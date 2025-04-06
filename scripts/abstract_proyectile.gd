@@ -27,7 +27,8 @@ func _physics_process(delta: float) -> void:
 		if is_destroyed_timer > destroy_time:
 			queue_free()
 func _on_body_entered(body):
-	explode.rpc()
+	if is_multiplayer_authority():
+		explode.rpc()
 
 @rpc("authority","call_local","reliable")
 func explode(): 
@@ -36,6 +37,6 @@ func explode():
 		is_destroyed_timer = 0
 		animation.animation = "Explotion"
 		$".".set_sleeping(true)
-	
+		$CollisionShape2D.set_deferred("disabled", true)
 
 	
