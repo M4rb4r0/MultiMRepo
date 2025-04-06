@@ -13,7 +13,7 @@ func _ready():
 	global_position = pos_spawn
 	global_rotation = rotacion_spawn
 	dir = global_rotation
-	linear_velocity = Vector2(speed,0).rotated(global_rotation)
+	apply_central_impulse(Vector2(speed,0).rotated(global_rotation))
 	zona_colision = $CollisionShape2D
 	animation = $AnimatedSprite2D
 	is_destroyed_timer = -1
