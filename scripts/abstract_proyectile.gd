@@ -17,7 +17,9 @@ func _ready():
 	zona_colision = $CollisionShape2D
 	animation = $AnimatedSprite2D
 	is_destroyed_timer = -1
+
 func _physics_process(delta: float) -> void:
+	$AnimatedSprite2D.rotation = lerp($AnimatedSprite2D.rotation,$".".linear_velocity.angle(),0.8)
 	if not is_destroyed_timer < -0.5:
 		#print('Explosion timer +=' + str(delta) )
 		is_destroyed_timer = is_destroyed_timer + delta
@@ -33,8 +35,7 @@ func explode():
 		print('Explosion')
 		is_destroyed_timer = 0
 		animation.animation = "Explotion"
-		$".".sleeping = true
-		$".".mass = 0
+		$".".set_sleeping(true)
 	
 
 	
