@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b43n3as84savb"]
+[gd_scene load_steps=22 format=3 uid="uid://b43n3as84savb"]
 
 [ext_resource type="Texture2D" uid="uid://bxa56pr210m7f" path="res://assets/projectiles/All_Fire_Bullet_Pixel_16x16_00.png" id="1_4emhk"]
 [ext_resource type="Script" uid="uid://b3nhd6085ky2k" path="res://scripts/bullet_ball_1.gd" id="1_4psn1"]
@@ -125,8 +125,20 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_4psn1"]
 radius = 5.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8ytdj"]
+properties/0/path = NodePath(".:linear_velocity")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:angular_velocity")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/replication_mode = 0
+
 [node name="bullet_ball_1" type="RigidBody2D"]
 self_modulate = Color(1, 0, 0, 1)
+collision_layer = 2
 gravity_scale = 2.0
 contact_monitor = true
 max_contacts_reported = 1
@@ -143,5 +155,8 @@ frame_progress = 0.617071
 position = Vector2(21, 9)
 shape = SubResource("CircleShape2D_4psn1")
 debug_color = Color(0.996078, 0, 0, 0.419608)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_8ytdj")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

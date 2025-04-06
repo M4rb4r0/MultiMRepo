@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://4iujh3f3ois"]
+[gd_scene load_steps=22 format=3 uid="uid://4iujh3f3ois"]
 
 [ext_resource type="Script" uid="uid://dtsda64iwqwlm" path="res://scripts/bullet_boomerang.gd" id="1_ytakm"]
 [ext_resource type="Texture2D" uid="uid://cp716hm1owyw8" path="res://assets/efectos/Free/Part 5/232.png" id="2_0t3sd"]
@@ -120,8 +120,20 @@ animations = [{
 radius = 6.0
 height = 22.6667
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ytakm"]
+properties/0/path = NodePath(".:linear_velocity")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:angular_velocity")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/replication_mode = 0
+
 [node name="bullet_boomerang" type="RigidBody2D"]
 self_modulate = Color(1, 0, 0, 1)
+collision_layer = 2
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_ytakm")
@@ -137,5 +149,8 @@ position = Vector2(16.6667, 10)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4g2xw")
 debug_color = Color(0.996078, 0, 0, 0.419608)
+
+[node name="MultiplayerSynchronizer2" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ytakm")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

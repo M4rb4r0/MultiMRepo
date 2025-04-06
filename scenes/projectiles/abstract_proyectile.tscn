@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dwwxbclp0pt55"]
+[gd_scene load_steps=21 format=3 uid="uid://dwwxbclp0pt55"]
 
 [ext_resource type="Texture2D" uid="uid://bxa56pr210m7f" path="res://assets/projectiles/All_Fire_Bullet_Pixel_16x16_00.png" id="1_4emhk"]
 [ext_resource type="Script" uid="uid://dbcew71amnb8w" path="res://scripts/abstract_proyectile.gd" id="1_ctouo"]
@@ -122,8 +122,17 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ctouo"]
+properties/0/path = NodePath(".:linear_velocity")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:angular_velocity")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="abstract_proyectile" type="RigidBody2D"]
 self_modulate = Color(1, 0, 0, 1)
+collision_layer = 2
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_ctouo")
@@ -138,5 +147,8 @@ speed_scale = 3.5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(21, 9)
 debug_color = Color(0.996078, 0, 0, 0.419608)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ctouo")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

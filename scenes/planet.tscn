@@ -13,6 +13,8 @@ radius = 51.0
 radius = 390.852
 
 [node name="Planet" type="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 script = SubResource("GDScript_cktii")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -25,6 +27,8 @@ one_way_collision_margin = 0.0
 debug_color = Color(0.970829, 0.130904, 0.284285, 0.42)
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 gravity_space_override = 3
 gravity_point = true
 gravity_point_unit_distance = 100.0

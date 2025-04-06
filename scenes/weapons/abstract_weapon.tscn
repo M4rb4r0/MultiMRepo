@@ -65,6 +65,3 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_mxgmv")
 animation = &"pow3"
 frame_progress = 0.942809
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-spawn_path = NodePath("..")
