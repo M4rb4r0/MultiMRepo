@@ -11,9 +11,12 @@ var animation:AnimatedSprite2D
 var is_destroyed_timer: float
 func _ready():
 	global_position = pos_spawn
-	global_rotation = rotacion_spawn
-	dir = global_rotation
-	apply_central_impulse(Vector2(speed,0).rotated(global_rotation))
+	
+#	if abs(rotacion_spawn) > PI/2:
+#		$AnimatedSprite2D.flip_h = true
+
+	dir = rotacion_spawn
+	apply_central_impulse(Vector2(speed,0).rotated(rotacion_spawn))
 	zona_colision = $CollisionShape2D
 	animation = $AnimatedSprite2D
 	is_destroyed_timer = -1
@@ -38,5 +41,3 @@ func explode():
 		animation.animation = "Explotion"
 		$".".set_sleeping(true)
 		$CollisionShape2D.set_deferred("disabled", true)
-
-	
