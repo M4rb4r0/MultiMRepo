@@ -9,6 +9,7 @@ var rotacion_spawn:float
 var dir:float
 var animation:AnimatedSprite2D
 var is_destroyed_timer: float
+@onready var despawn_timer = 20
 
 func _ready():
 	global_position = pos_spawn
@@ -25,6 +26,10 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	var max_vel = 3000
 	$".".linear_velocity = linear_velocity.clamp(Vector2(-max_vel,-max_vel),Vector2(max_vel,max_vel))
 func _physics_process(delta: float) -> void:
+	despawn_timer -= delta
+	print(despawn_timer)
+	if despawn_timer < 0:
+		explode.rpc()
 	$AnimatedSprite2D.rotation = lerp($AnimatedSprite2D.rotation,$".".linear_velocity.angle(),0.8)
 	
 	if not is_destroyed_timer < -0.5:
@@ -36,6 +41,7 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body):
 	if is_multiplayer_authority():
 		explode.rpc()
+		
 
 @rpc("authority","call_local","reliable")
 func explode(): 
