@@ -346,7 +346,7 @@ height = 118.0
 radius = 98.0
 height = 210.0
 
-[node name="Player" type="CharacterBody2D" groups=["Damageable", "Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Damageable", "Player", "pullable"]]
 script = ExtResource("1_d33cm")
 
 [node name="pivot" type="Node2D" parent="."]

@@ -13,19 +13,19 @@ func _on_body_entered(body):
 		pull(body)
 
 func pull(target):
-	#
-	#if not target.has_node("Sprite2D"):
-	#	print("not pullable")
-	#	return
 	print("pullable")
 	var sprite = target.get_node("Sprite2D")
 	if !sprite:
 		sprite = target.get_node("AnimatedSprite2D")
-	var duplicated=sprite.duplicate()
 	
+	if target is Player:
+		sprite = target.get_node("pivot/Sprite2D")
+		target.recieve_damage()
+		target.emit_signal("player_death")
+	target.queue_free()
+	var duplicated=sprite.duplicate()
 	add_child(duplicated)
 	duplicated.global_position = sprite.global_position
-	target.queue_free()
 	var duration = animator.current_animation_length * animator.speed_scale *0.3
 	var tween := create_tween()
 	tween.tween_property(duplicated, "position", Vector2.ZERO, duration)
