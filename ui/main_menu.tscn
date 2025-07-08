@@ -116,56 +116,6 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p8ri8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lsdqh"]
-atlas = ExtResource("6_p8ri8")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jiymt"]
-atlas = ExtResource("6_p8ri8")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bgtsx"]
-atlas = ExtResource("6_p8ri8")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k3fjj"]
-atlas = ExtResource("6_p8ri8")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ehr10"]
-atlas = ExtResource("6_p8ri8")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oxfya"]
-atlas = ExtResource("6_p8ri8")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_bgtsx"]
-animations = [{
-"frames": [{
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_lsdqh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jiymt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bgtsx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k3fjj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ehr10")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oxfya")
-}],
-"loop": true,
-"name": &"new_animation",
-"speed": 10.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_kaxbk"]
 atlas = ExtResource("7_ubpvv")
 region = Rect2(0, 0, 100, 100)
@@ -524,22 +474,78 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsdqh"]
+atlas = ExtResource("6_p8ri8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jiymt"]
+atlas = ExtResource("6_p8ri8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgtsx"]
+atlas = ExtResource("6_p8ri8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3fjj"]
+atlas = ExtResource("6_p8ri8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehr10"]
+atlas = ExtResource("6_p8ri8")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxfya"]
+atlas = ExtResource("6_p8ri8")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bgtsx"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_lsdqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jiymt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgtsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3fjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehr10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxfya")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 10.0
+}]
+
 [node name="MainMenu" type="Control"]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("1_3qnx1")
 script = ExtResource("2_p6ygj")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1
 texture_filter = 1
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(640, 360)
 mouse_filter = 2
 texture = ExtResource("6_ubpvv")
@@ -552,17 +558,13 @@ autoplay = "idle"
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -568.0
-offset_top = -304.0
 offset_right = 568.0
-offset_bottom = -56.0
+offset_bottom = 248.0
 grow_horizontal = 2
-grow_vertical = 2
 pivot_offset = Vector2(550, 120)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer3"]
@@ -581,11 +583,18 @@ text = "Gravity   Gunners"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-offset_left = 760.0
-offset_top = 312.0
-offset_right = 1060.0
-offset_bottom = 535.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -463.0
+offset_top = -91.0
+offset_right = -141.0
+offset_bottom = 91.0
+grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 4
 
 [node name="Credits" type="Button" parent="VBoxContainer3"]
@@ -609,11 +618,15 @@ text = "Quit"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-offset_left = 192.0
-offset_top = 312.0
-offset_right = 492.0
-offset_bottom = 535.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 138.0
+offset_top = -111.0
+offset_right = 488.0
+offset_bottom = 112.0
+grow_vertical = 2
 size_flags_horizontal = 4
 
 [node name="Host" type="Button" parent="VBoxContainer2"]
@@ -636,18 +649,32 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_p8ri8")
 action_mode = 0
 text = "Join"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(640, 391)
+[node name="Container" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Container"]
+z_index = -1
+position = Vector2(12, 436)
+scale = Vector2(6.32244, 6.32244)
+sprite_frames = SubResource("SpriteFrames_k3fjj")
+autoplay = "default"
+frame_progress = 0.390797
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Container"]
+position = Vector2(20, 51)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_bgtsx")
 animation = &"new_animation"
 autoplay = "new_animation"
 frame_progress = 0.455982
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-z_index = -1
-position = Vector2(632, 776)
-scale = Vector2(6.32244, 6.32244)
-sprite_frames = SubResource("SpriteFrames_k3fjj")
-autoplay = "default"
-frame_progress = 0.390797

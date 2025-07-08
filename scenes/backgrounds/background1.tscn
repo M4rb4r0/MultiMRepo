@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cncovle4i6trg"]
+[gd_scene load_steps=7 format=3 uid="uid://ln26qj5n6aak"]
 
 [ext_resource type="Script" uid="uid://c2nfu8du1p8gs" path="res://scripts/parallax_background.gd" id="1_cr2lm"]
 [ext_resource type="PackedScene" uid="uid://dbxdualumejet" path="res://scenes/levels/RoundManager.tscn" id="1_nmc72"]

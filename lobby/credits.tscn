@@ -1,7 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://57sil4m6nfve"]
+[gd_scene load_steps=7 format=3 uid="uid://57sil4m6nfve"]
 
 [ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://lobby/lobby_theme.tres" id="1_bob82"]
 [ext_resource type="Script" uid="uid://cuqvj8grm28qy" path="res://ui/credits.gd" id="2_hvxmk"]
+[ext_resource type="Texture2D" uid="uid://b737tbhp8fx7e" path="res://assets/backgrounds/Space Background (1).png" id="3_mvqlp"]
+
+[sub_resource type="Animation" id="Animation_5klac"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p8ri8"]
+resource_name = "idle"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.105, 1.105)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lsdqh"]
+_data = {
+&"RESET": SubResource("Animation_5klac"),
+&"idle": SubResource("Animation_p8ri8")
+}
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -89,6 +128,33 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 bbcode_enabled = true
 text = "[center]
-[b]Lobby[/b]
+A Game By
+MultiMGames
+
+Lobby
 Elías Zelada
+
+Assets
+BDragon1727 (Gun & bullets)
+	Free Game Assets (GUI, Sprite, Tilesets) (Players)
+Deep-Fold (Background & Planets)
 [/center]"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(640, 360)
+mouse_filter = 2
+texture = ExtResource("3_mvqlp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_lsdqh")
+}
+autoplay = "idle"
