@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbxdualumejet"]
+[gd_scene load_steps=8 format=3 uid="uid://dbxdualumejet"]
 
 [ext_resource type="Script" uid="uid://dpng3i7c3x485" path="res://scenes/levels/round_manager.gd" id="1_enb7h"]
 [ext_resource type="PackedScene" uid="uid://k1jpyuj8o8lx" path="res://scenes/players/building_player.tscn" id="2_ac336"]
 [ext_resource type="PackedScene" uid="uid://4sskgfn6nl4j" path="res://scenes/black_hole.tscn" id="2_pi8c4"]
 [ext_resource type="PackedScene" uid="uid://b8adktcjmef2l" path="res://scenes/ObjectSelectionUI.tscn" id="4_brcii"]
 [ext_resource type="PackedScene" uid="uid://dqxus3thqimav" path="res://scenes/planet.tscn" id="4_n1tqw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n1tqw"]
+font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_enb7h"]
 
@@ -19,6 +22,7 @@ agujero_negro_scene = ExtResource("2_pi8c4")
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_n1tqw")
 horizontal_alignment = 1
 
 [node name="TimerLabel" type="Label" parent="."]
