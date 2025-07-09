@@ -21,9 +21,9 @@ var planet_sprite_paths := [
 	\"res://assets/planets/earth.png\",
 	\"res://assets/planets/2275770583.png\",
 	\"res://assets/planets/975361989.png\",
-	\"res://assets/planets/1729412649.png\",
+	\"res://assets/planets/1729412649 (1).png\",
 	\"res://assets/planets/2203181470.png\",
-	\"res://assets/planets/2261553270.png\"
+	\"res://assets/planets/3079607738.png\"
 ]
 func _ready():
 	if self.get_multiplayer_authority() == 1:
