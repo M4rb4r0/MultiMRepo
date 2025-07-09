@@ -33,6 +33,8 @@ func _ready():
 
 @rpc(\"authority\", \"call_local\")
 func set_planet_sprite(index: int):
+	print(\"Recibiendo sprite_index: \", index, \" en peer: \", multiplayer.get_unique_id())
+	sprite_index = index  # sincronizamos el valor local
 	if index >= 0 and index < planet_sprite_paths.size():
 		var texture = load(planet_sprite_paths[index])
 		if texture is Texture2D:
