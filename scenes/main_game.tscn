@@ -1,21 +1,33 @@
-[gd_scene load_steps=8 format=3 uid="uid://c818bfdxycp45"]
+[gd_scene load_steps=11 format=3 uid="uid://c818bfdxycp45"]
 
 [ext_resource type="Script" uid="uid://dx4gk8na2q2bx" path="res://scenes/main_game.gd" id="1_72e8q"]
 [ext_resource type="PackedScene" uid="uid://cl3yb3i1s8ujy" path="res://scenes/players/player.tscn" id="1_s3esy"]
 [ext_resource type="PackedScene" uid="uid://6ax8cqpub6pr" path="res://scenes/backgrounds/level1.tscn" id="3_0rdsr"]
+[ext_resource type="PackedScene" uid="uid://c8foi4kprq82k" path="res://scenes/structures/box_cannon.tscn" id="3_70vka"]
 [ext_resource type="PackedScene" uid="uid://dqxus3thqimav" path="res://scenes/planet.tscn" id="3_d2op2"]
 [ext_resource type="PackedScene" uid="uid://dbxdualumejet" path="res://scenes/levels/RoundManager.tscn" id="5_ipu61"]
 [ext_resource type="PackedScene" uid="uid://4sskgfn6nl4j" path="res://scenes/black_hole.tscn" id="6_ygxny"]
-[ext_resource type="PackedScene" uid="uid://ha4qgwi3cy3p" path="res://scenes/mass_relay.tscn" id="7_wi4c7"]
+[ext_resource type="PackedScene" uid="uid://cv87gkjx5kmcg" path="res://scenes/mass_relay.tscn" id="7_wi4c7"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wi4c7"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_70vka"]
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_72e8q")
 player_scene = ExtResource("1_s3esy")
 
+[node name="BoxCannon2" parent="." instance=ExtResource("3_70vka")]
+position = Vector2(7461, 4244)
+rotation = 3.77149
+scale = Vector2(1.86607, 1.86607)
+skew = 0.00114942
+fire_interval = 7.5
+
 [node name="ConstructionCamera" type="Camera2D" parent="."]
 position = Vector2(2680, 1504)
 enabled = false
-zoom = Vector2(0.24, 0.24)
+zoom = Vector2(0.14, 0.14)
 
 [node name="background1" parent="." instance=ExtResource("3_0rdsr")]
 position = Vector2(-2, 5.99997)
@@ -61,6 +73,49 @@ position = Vector2(1256, 808)
 
 [node name="mass_relay2" parent="." instance=ExtResource("7_wi4c7")]
 position = Vector2(4592, 2312)
+
+[node name="OuterWall" type="Node2D" parent="."]
+position = Vector2(-1894, -1154)
+scale = Vector2(1.865, 1.865)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OuterWall"]
+modulate = Color(1, 0, 0, 1)
+z_index = -1
+use_parent_material = true
+position = Vector2(5347, 3004)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OuterWall/StaticBody2D"]
+modulate = Color(1, 0, 0.882353, 0.368627)
+z_index = 1
+position = Vector2(-5568.61, -3071.12)
+scale = Vector2(1.00115, 1)
+build_mode = 1
+polygon = PackedVector2Array(5334, 1, 5334, 3000, 0, 2999, 0, 0)
+
+[node name="LeftWall" type="Sprite2D" parent="OuterWall/StaticBody2D/CollisionPolygon2D"]
+position = Vector2(-1343.79, 1502.75)
+scale = Vector2(2681.92, 3013.49)
+texture = SubResource("PlaceholderTexture2D_wi4c7")
+
+[node name="UpWall" type="Sprite2D" parent="OuterWall/StaticBody2D/CollisionPolygon2D"]
+position = Vector2(2660.5, -1127.5)
+scale = Vector2(10647, 2249)
+texture = SubResource("PlaceholderTexture2D_wi4c7")
+
+[node name="DownWall" type="Sprite2D" parent="OuterWall/StaticBody2D/CollisionPolygon2D"]
+position = Vector2(2654, 4146)
+scale = Vector2(10688, 2274)
+texture = SubResource("PlaceholderTexture2D_70vka")
+
+[node name="Right Wall" type="Sprite2D" parent="OuterWall/StaticBody2D/CollisionPolygon2D"]
+position = Vector2(6642.04, 1503.5)
+scale = Vector2(2683.92, 3011)
+texture = SubResource("PlaceholderTexture2D_wi4c7")
+
+[node name="BoxCannon" parent="." instance=ExtResource("3_70vka")]
+position = Vector2(-2225, -1184)
+rotation = 0.785398
+fire_interval = 7.5
 
 [connection signal="ending_round" from="RoundManager" to="." method="_on_round_manager_ending_round"]
 [connection signal="initiate_contruction" from="RoundManager" to="." method="_on_round_manager_start_building_phase"]

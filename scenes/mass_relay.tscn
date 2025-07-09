@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ha4qgwi3cy3p"]
+[gd_scene load_steps=7 format=3 uid="uid://cv87gkjx5kmcg"]
 
 [ext_resource type="Script" uid="uid://dad8t6y1ivq1m" path="res://mass_relay.gd" id="1_5tknh"]
 [ext_resource type="Texture2D" uid="uid://ckwucovpvc8j3" path="res://assets/structures/mass_relay.png" id="2_70ajh"]

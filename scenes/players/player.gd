@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var jump_charges = 2
 @export var max_speed = 300
 @export var acceleration = 5000
+@export var is_invincible = false
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback = animation_tree["parameters/Movement/playback"]
 @onready var label: Label = $Label
@@ -39,13 +40,15 @@ var rotation_speed= 2
 var spawn_point = Vector2.ZERO
 var target_zoom := Vector2(0.5,0.5)
 signal player_death
-func setup(player_data: Statics.PlayerData):
+func setup(player_data: Statics.PlayerData,invincible = false):
 	label.text = player_data.name
 	name = str(player_data.id)
 	set_multiplayer_authority(player_data.id)
 	if is_multiplayer_authority():
 			camera_2d.make_current()
 	shoot_timer.timeout.connect(on_shoot_timer_timeout)
+	is_invincible = invincible
+		
 var AttractedBy = []
 
 func _physics_process(delta: float) -> void:
@@ -194,6 +197,9 @@ func play_step() -> void:
 @rpc("call_local", "authority","reliable")
 func recieve_damage():
 	print("recibo daño")
+	if is_invincible:
+		print("Es invencible")
+		return
 	if health == 2:
 		health = 1
 		shield.visible = false

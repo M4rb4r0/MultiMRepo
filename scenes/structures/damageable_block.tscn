@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://nae1e43vi6e0"]
+
+[ext_resource type="Script" uid="uid://c53evd1b2brxy" path="res://scenes/structures/damageable_block.gd" id="1_ykj2n"]
+[ext_resource type="Texture2D" uid="uid://cenuy5agfuliq" path="res://assets/structures/asteroid_1.png" id="2_ykj2n"]
+
+[node name="DamageableBlock" type="RigidBody2D" groups=["Damageable", "pullable", "throwable"]]
+light_mask = 5
+visibility_layer = 5
+mass = 10.0
+script = ExtResource("1_ykj2n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ykj2n")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(22, 96, 38, 52, 54, 34, 66, 30, 74, 2, 94, -20, 96, -34, 58, -44, 40, -22, 26, -34, -6, -50, -22, -46, -50, -38, -58, -4, -44, 52, -24, 60, -14, 80, 10, 96)

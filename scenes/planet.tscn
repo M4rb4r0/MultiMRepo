@@ -7,46 +7,96 @@
 
 [sub_resource type="GDScript" id="GDScript_cktii"]
 script/source = "extends StaticBody2D
-@export var health = 3
-var alive = true
+
+@export var health := 3
+@export var respawnable := false  # NUEVO: permite respawn
+var alive := true
+@onready var sprite_base: Sprite2D = $Sprite2D
 @onready var crack1: Sprite2D = $Sprite2D2
 @onready var crack2: Sprite2D = $Sprite2D3
+@onready var body_collision: CollisionShape2D = $CollisionShape2D
+@onready var area_collision: CollisionShape2D = $Area2D/CollisionShape2D
+var sprite_index := -1  
+var planet_sprite_paths := [
+	\"res://assets/planets/earth.png\",
+	\"res://assets/planets/2275770583.png\",
+]
+func _ready():
+	if self.get_multiplayer_authority() == 1:
+		if sprite_index == -1:
+			sprite_index = randi_range(0, planet_sprite_paths.size() - 1)
+		set_planet_sprite.rpc(sprite_index)
 
-
+@rpc(\"authority\", \"call_local\")
+func set_planet_sprite(index: int):
+	if index >= 0 and index < planet_sprite_paths.size():
+		var texture = load(planet_sprite_paths[index])
+		if texture is Texture2D:
+			sprite_base.texture = texture
+		else:
+			push_warning(\"No se pudo cargar la textura en: \" + planet_sprite_paths[index])
+	else:
+		push_warning(\"Índice fuera de rango: \" + str(index))
 
 @rpc(\"authority\", \"call_local\", \"reliable\")
 func recieve_damage():
-	print(\"planeta recibio damage desde health : \" +  str(health))
+	if not alive:
+		return
+
+	print(\"planeta recibió daño desde health: \" + str(health))
 	vibrate_planet()
 	health -= 1
+
 	if health == 2:
 		fade_in_crack1(crack1)
-	if health == 1:
+	elif health == 1:
 		fade_in_crack2(crack2)
-	if health == 0:
-		self.explode()
-
+	elif health <= 0:
+		explode()
 func explode():
 	alive = false
 	send_data.rpc(alive)
-	queue_free()
 
+	if respawnable:
+		hide()
+		set_collision_enabled(false)
+		await get_tree().create_timer(5.0).timeout
+		respawn()
+	else:
+		queue_free()
+
+func respawn():
+	health = 3
+	alive = true
+	send_data.rpc(alive)
+
+	crack1.visible = false
+	crack2.visible = false
+	crack1.modulate.a = 0.0
+	crack2.modulate.a = 0.0
+
+	show()
+	set_collision_enabled(true)
+
+func set_collision_enabled(enabled: bool):
+	body_collision.set_deferred(\"disabled\", not enabled)
+	area_collision.set_deferred(\"disabled\", not enabled)
+	
 @rpc(\"authority\")
 func send_data(state: bool) -> void:
-	state = alive
-	
+	alive = state
+
 func fade_in_crack1(crack_node: Sprite2D):
 	crack_node.visible = true
-	crack_node.modulate.a = 0.0  # alpha inicial
+	crack_node.modulate.a = 0.0
 	var tween = get_tree().create_tween()
-	tween.tween_property(crack_node, \"modulate:a\", 0.5, 0.2) 
+	tween.tween_property(crack_node, \"modulate:a\", 0.5, 0.2)
 
 func fade_in_crack2(crack_node: Sprite2D):
 	crack_node.visible = true
-	crack_node.modulate.a = 0.0  # alpha inicial
+	crack_node.modulate.a = 0.0
 	var tween = get_tree().create_tween()
 	tween.tween_property(crack_node, \"modulate:a\", 0.4, 0.2)
-	
 
 func vibrate_planet():
 	var tween = get_tree().create_tween()
@@ -54,7 +104,6 @@ func vibrate_planet():
 	var intensity = 8
 	var speed = 0.05
 
-	# Serie de pequeños movimientos
 	tween.tween_property(self, \"position\", original_pos + Vector2(-intensity, 0), speed)
 	tween.tween_property(self, \"position\", original_pos + Vector2(intensity, 0), speed)
 	tween.tween_property(self, \"position\", original_pos + Vector2(0, -intensity), speed)

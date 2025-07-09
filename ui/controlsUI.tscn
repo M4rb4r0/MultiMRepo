@@ -1,0 +1,164 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxxqdv0ft5ngp"]
+
+[ext_resource type="Texture2D" uid="uid://cdu5i7q0223mn" path="res://assets/clipart3386423.png" id="1_0ryor"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3fwyd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2y616"]
+bg_color = Color(0.388614, 0.243403, 0.144149, 0.564706)
+corner_detail = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ryor"]
+bg_color = Color(1, 1, 1, 0.682353)
+
+[node name="UIOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(2.5, 2.5)
+
+[node name="Control" type="Panel" parent="."]
+self_modulate = Color(0.847474, 0.847474, 0.847474, 1)
+layout_mode = 0
+offset_right = 111.0
+offset_bottom = 100.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3fwyd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2y616")
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 2
+offset_left = 1.0
+offset_top = -3.0
+offset_right = 11.0
+offset_bottom = 16.0
+text = "W"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel3" type="Panel" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2y616")
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer2/Panel3"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 11.0
+offset_bottom = 16.0
+text = "A"
+
+[node name="Panel" type="Panel" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2y616")
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer2/Panel"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 11.0
+offset_bottom = 16.0
+text = "S"
+
+[node name="Panel2" type="Panel" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2y616")
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer2/Panel2"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 11.0
+offset_bottom = 16.0
+text = "D"
+
+[node name="Label" type="Label" parent="Control/HBoxContainer"]
+modulate = Color(1, 0.913725, 1, 1)
+layout_mode = 2
+text = "Movimiento"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 37.0
+offset_right = 101.0
+offset_bottom = 91.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/HBoxContainer2"]
+layout_mode = 2
+text = "Fire
+
+"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer2"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("1_0ryor")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Panel4" type="Panel" parent="Control/HBoxContainer2/TextureRect"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 9.0
+offset_top = 1.0
+offset_right = 23.0
+offset_bottom = 3.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ryor")
+
+[node name="Panel3" type="Panel" parent="Control/HBoxContainer2/TextureRect"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 26.0
+offset_bottom = 5.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ryor")
+
+[node name="Panel2" type="Panel" parent="Control/HBoxContainer2/TextureRect"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 28.0
+offset_bottom = 8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ryor")
+
+[node name="Panel" type="Panel" parent="Control/HBoxContainer2/TextureRect"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 8.0
+offset_right = 30.0
+offset_bottom = 19.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ryor")
+
+[node name="Label2" type="Label" parent="Control/HBoxContainer2"]
+layout_mode = 2
+text = "Parry
+
+"
+horizontal_alignment = 1

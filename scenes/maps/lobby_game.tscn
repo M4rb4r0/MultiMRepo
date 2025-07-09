@@ -1,0 +1,220 @@
+[gd_scene load_steps=12 format=3 uid="uid://b8nq8jxr77xh8"]
+
+[ext_resource type="Script" uid="uid://dt4ga1n6q7wax" path="res://scenes/maps/lobby_game.gd" id="1_lxn8l"]
+[ext_resource type="PackedScene" uid="uid://cl3yb3i1s8ujy" path="res://scenes/players/player.tscn" id="2_ovglq"]
+[ext_resource type="PackedScene" uid="uid://6ax8cqpub6pr" path="res://scenes/backgrounds/level1.tscn" id="3_bx2u6"]
+[ext_resource type="PackedScene" uid="uid://dqxus3thqimav" path="res://scenes/planet.tscn" id="4_rutjd"]
+[ext_resource type="Script" uid="uid://d0m50rq0pyvpy" path="res://scenes/maps/instructions_panel.gd" id="5_dthre"]
+[ext_resource type="PackedScene" uid="uid://cxxqdv0ft5ngp" path="res://ui/controlsUI.tscn" id="6_dtet3"]
+[ext_resource type="PackedScene" uid="uid://nae1e43vi6e0" path="res://scenes/structures/damageable_block.tscn" id="7_lx2ej"]
+[ext_resource type="PackedScene" uid="uid://c8foi4kprq82k" path="res://scenes/structures/box_cannon.tscn" id="8_o6kxt"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xidox"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dtet3"]
+
+[sub_resource type="Theme" id="Theme_o6kxt"]
+default_font_size = 50
+
+[node name="MainGame" type="Node2D"]
+script = ExtResource("1_lxn8l")
+player_scene = ExtResource("2_ovglq")
+
+[node name="OuterWall" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OuterWall"]
+modulate = Color(1, 0, 0, 1)
+use_parent_material = true
+position = Vector2(5347, 3004)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OuterWall/StaticBody2D"]
+modulate = Color(1, 0, 0.882353, 0.368627)
+position = Vector2(-5332.16, -3000)
+scale = Vector2(1.00115, 1)
+build_mode = 1
+polygon = PackedVector2Array(5334, 1, 5334, 3000, 0, 2999, 0, 0)
+
+[node name="LeftWall" type="Sprite2D" parent="OuterWall/StaticBody2D/CollisionPolygon2D"]
+position = Vector2(-1343.79, 1502)
+scale = Vector2(2681.92, 3012)
+texture = SubResource("PlaceholderTexture2D_xidox")
+
+[node name="UpWall" type="Sprite2D" parent="OuterWall/StaticBody2D/CollisionPolygon2D"]
+position = Vector2(2660.5, -1127.5)
+scale = Vector2(10647, 2249)
+texture = SubResource("PlaceholderTexture2D_xidox")
+
+[node name="DownWall" type="Sprite2D" parent="OuterWall/StaticBody2D/CollisionPolygon2D"]
+position = Vector2(2654, 4146)
+scale = Vector2(10688, 2274)
+texture = SubResource("PlaceholderTexture2D_dtet3")
+
+[node name="Right Wall" type="Sprite2D" parent="OuterWall/StaticBody2D/CollisionPolygon2D"]
+position = Vector2(6642.04, 1503.5)
+scale = Vector2(2683.92, 3011)
+texture = SubResource("PlaceholderTexture2D_xidox")
+
+[node name="ConstructionCamera" type="Camera2D" parent="."]
+position = Vector2(2680, 1504)
+enabled = false
+zoom = Vector2(0.24, 0.24)
+
+[node name="background1" parent="." instance=ExtResource("3_bx2u6")]
+show_behind_parent = true
+z_index = -1
+position = Vector2(336, 577)
+scale = Vector2(5.76139, 0.221901)
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="SpawnPoint" type="Marker2D" parent="Markers"]
+position = Vector2(4007, 961)
+
+[node name="SpawnPoint2" type="Marker2D" parent="Markers"]
+position = Vector2(3998, 1962)
+
+[node name="Planets" type="Node2D" parent="."]
+
+[node name="Planet" parent="Planets" instance=ExtResource("4_rutjd")]
+position = Vector2(1810, 812)
+collision_layer = 1
+collision_mask = 1
+respawnable = true
+
+[node name="Planet2" parent="Planets" instance=ExtResource("4_rutjd")]
+position = Vector2(1826, 2092)
+collision_layer = 1
+collision_mask = 1
+respawnable = true
+
+[node name="Planet3" parent="Planets" instance=ExtResource("4_rutjd")]
+position = Vector2(4005, 1481)
+scale = Vector2(4, 4)
+collision_layer = 1
+collision_mask = 1
+health = 9999
+respawnable = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InstructionsPanel" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+script = ExtResource("5_dthre")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/InstructionsPanel"]
+layout_direction = 3
+layout_mode = 0
+offset_left = 2.0
+offset_top = 54.0
+offset_right = 158.0
+offset_bottom = 158.0
+
+[node name="Controles" type="Label" parent="UI/InstructionsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Controles"
+
+[node name="Label2" type="Label" parent="UI/InstructionsPanel/VBoxContainer"]
+layout_mode = 2
+text = "WASD - Moverse"
+
+[node name="Label3" type="Label" parent="UI/InstructionsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Clicik Izquierdo - Disparo"
+
+[node name="Label4" type="Label" parent="UI/InstructionsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Click derecho - Parry"
+
+[node name="Button" type="Button" parent="UI/InstructionsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Iniciar Partida"
+
+[node name="UIOverlay2" parent="." instance=ExtResource("6_dtet3")]
+offset_left = 4088.0
+offset_top = 2252.0
+offset_right = 4093.0
+offset_bottom = 2252.0
+rotation = 3.14159
+
+[node name="UIOverlay" parent="." instance=ExtResource("6_dtet3")]
+offset_left = 3906.0
+offset_top = 714.0
+offset_right = 3907.0
+offset_bottom = 714.0
+
+[node name="Tips" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_o6kxt")
+
+[node name="Label4" type="Label" parent="Tips"]
+layout_mode = 0
+offset_left = 2418.0
+offset_top = 483.0
+offset_right = 3053.0
+offset_bottom = 800.0
+rotation = 1.5708
+text = "Por suerte este planeta reaparece cada 3 segundos si se destruye"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="Tips"]
+layout_mode = 0
+offset_left = 2105.0
+offset_top = -7.0
+offset_right = 2563.0
+offset_bottom = 95.0
+text = "Lanza asteroides 3000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Tips"]
+layout_mode = 0
+offset_left = 2445.0
+offset_top = 357.0
+offset_right = 3386.0
+offset_bottom = 478.0
+rotation = 1.5708
+text = "Cuidado! , incluso los planetas se pueden destruir"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Tips"]
+layout_mode = 0
+offset_left = 2913.0
+offset_top = 1911.0
+offset_right = 3854.0
+offset_bottom = 2032.0
+rotation = -1.5708
+text = "Usa SpaceBar para saltar y moverte en el espacio"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DamageableBlock" parent="." instance=ExtResource("7_lx2ej")]
+position = Vector2(3128, 1481)
+affected_by_gravity = false
+infinite_health = true
+
+[node name="DamageableBlock2" parent="." instance=ExtResource("7_lx2ej")]
+position = Vector2(3340, 953)
+
+[node name="DamageableBlock3" parent="." instance=ExtResource("7_lx2ej")]
+position = Vector2(3330, 1968)
+
+[node name="BoxCannon" parent="." instance=ExtResource("8_o6kxt")]
+position = Vector2(2346, 104)
+rotation = 1.5708
+fire_interval = 10.0
+
+[connection signal="pressed" from="UI/InstructionsPanel/VBoxContainer/Button" to="UI/InstructionsPanel" method="_on_button_pressed"]
