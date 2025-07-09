@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://4sskgfn6nl4j"]
 
-[ext_resource type="Script" path="res://scenes/black_hole.gd" id="1_djpiu"]
+[ext_resource type="Script" uid="uid://sclytn8kcoxe" path="res://scenes/black_hole.gd" id="1_djpiu"]
 [ext_resource type="Texture2D" uid="uid://cc3vo5ney0ynu" path="res://assets/structures/particles/black_hole_texture_pixel_art_256.png" id="2_yjpat"]
 [ext_resource type="Texture2D" uid="uid://bivjdqm48adi7" path="res://assets/structures/particles/cruz.png" id="3_4uan7"]
 [ext_resource type="Texture2D" uid="uid://dm36oic2l5px2" path="res://assets/structures/particles/cruz_hueca.png" id="4_51iq1"]

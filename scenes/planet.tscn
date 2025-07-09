@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dqxus3thqimav"]
 
 [ext_resource type="Texture2D" uid="uid://c6xfnmqsvhdfy" path="res://assets/planets/earth.png" id="1_h8ms6"]
-[ext_resource type="Texture2D" uid="uid://6lehvlocbvti" path="res://assets/planets/22152631.png" id="2_0k1rn"]
+[ext_resource type="Texture2D" uid="uid://6lehvlocbvti" path="res://assets/planets/2215263.png" id="2_0k1rn"]
 [ext_resource type="Texture2D" uid="uid://g8pvexalmse" path="res://assets/Bubbles/Atmosphere.png" id="2_h8ms6"]
 [ext_resource type="Texture2D" uid="uid://b4knpnwvtukg5" path="res://assets/planets/22152632.png" id="3_48b8c"]
 
