@@ -66,11 +66,11 @@ func _process(delta):
 	if estado_actual == Estado.ESPERANDO:
 		round_message.visible = true
 		if is_multiplayer_authority():
-			round_message.text = "Presiona clic izquierdo para iniciar la ronda"
+			round_message.text = "Click to start round"
 			if Input.is_action_just_pressed("fire"):
 				start_building_fase.rpc()
 		else:
-			round_message.text = "Esperando a que el host inicie la ronda"
+			round_message.text = "Waiting for host to start"
 		center_message()
 
 	# Nuevo: Gestión de input de pausa solo durante el juego
@@ -87,10 +87,10 @@ func cambiar_fase(nuevo_estado: Estado):
 		Estado.ESPERANDO:
 			reproducir_musica(lobby_music)
 			music_player.volume_db = -10.0 
-			round_message.text = "Esperando inicio de ronda"
+			round_message.text = "Waiting for round to start"
 			round_message.visible = true
 		Estado.CONSTRUCCION:
-			round_message.text = "Fase de Construcción"
+			round_message.text = "Construction phase"
 			round_message.visible = true
 			center_message()
 			await get_tree().create_timer(2.0).timeout
@@ -110,7 +110,7 @@ func cambiar_fase(nuevo_estado: Estado):
 			if is_multiplayer_authority():
 				start_round.rpc()
 		Estado.TERMINANDO:
-			end_round("Ronda terminada")
+			end_round("Round Over")
 	center_message()
 
 func mostrar_ui_seleccion():
@@ -180,11 +180,11 @@ func end_builiding_fase():
 	cambio_volumen_gradual(-50.0)
 	start_sound.play()
 	round_message.visible = true
-	round_message.text = "iniciando ronda en 3"
+	round_message.text = "Starting round in 3"
 	await get_tree().create_timer(1.0).timeout
-	round_message.text = "iniciando ronda en 2"
+	round_message.text = "Starting round in 2"
 	await get_tree().create_timer(1.0).timeout
-	round_message.text = "iniciando ronda en 1"
+	round_message.text = "Starting round in 1"
 	await get_tree().create_timer(1.0).timeout
 	cambiar_fase(Estado.JUGANDO)
 
@@ -239,7 +239,7 @@ func pause_game():
 		return  # Ya estaba pausado, no hacer nada
 	game_paused = true
 	get_tree().paused = true                        # Pausar el árbol de la escena (detiene juego)
-	round_message.text = "Pausado"
+	round_message.text = "Pause (press escape to resume)"
 	round_message.visible = true                    # Mostrar mensaje de pausa
 	center_message()                                # Centrar "Pausado" en pantalla
 

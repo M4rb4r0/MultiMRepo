@@ -48,7 +48,7 @@ theme_override_constants/separation = 20
 [node name="Label" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Elige un objeto"
+text = "Choose an object!"
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2

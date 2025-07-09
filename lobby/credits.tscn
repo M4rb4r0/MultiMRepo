@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://57sil4m6nfve"]
+[gd_scene load_steps=7 format=3 uid="uid://bg8pw6ksu1bb1"]
 
 [ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://lobby/lobby_theme.tres" id="1_bob82"]
 [ext_resource type="Script" uid="uid://cuqvj8grm28qy" path="res://ui/credits.gd" id="2_hvxmk"]
@@ -137,7 +137,7 @@ Elías Zelada
 Assets
 BDragon1727 (Gun & bullets)
 	Free Game Assets (GUI, Sprite, Tilesets) (Players)
-Deep-Fold (Background & Planets)
+Deep-Fold (Background, asteroid & Planets)
 [/center]"
 
 [node name="TextureRect" type="TextureRect" parent="."]
