@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bjmhvja3pgcfc"
+path="res://.godot/imported/Flim well cut.mp3-59adcc5b9144ac6b608d5795ffd3f4f9.mp3str"
+
+[deps]
+
+source_file="res://assets/Music/Flim well cut.mp3"
+dest_files=["res://.godot/imported/Flim well cut.mp3-59adcc5b9144ac6b608d5795ffd3f4f9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

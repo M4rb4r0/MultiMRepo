@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8nq8jxr77xh8"]
+[gd_scene load_steps=13 format=3 uid="uid://b8nq8jxr77xh8"]
 
 [ext_resource type="Script" uid="uid://dt4ga1n6q7wax" path="res://scenes/maps/lobby_game.gd" id="1_lxn8l"]
 [ext_resource type="PackedScene" uid="uid://cl3yb3i1s8ujy" path="res://scenes/players/player.tscn" id="2_ovglq"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cxxqdv0ft5ngp" path="res://ui/controlsUI.tscn" id="6_dtet3"]
 [ext_resource type="PackedScene" uid="uid://nae1e43vi6e0" path="res://scenes/structures/damageable_block.tscn" id="7_lx2ej"]
 [ext_resource type="PackedScene" uid="uid://c8foi4kprq82k" path="res://scenes/structures/box_cannon.tscn" id="8_o6kxt"]
+[ext_resource type="AudioStream" uid="uid://buqxlsndgpxxu" path="res://assets/Music/Gold Dust.mp3" id="9_clbwc"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xidox"]
 
@@ -216,5 +217,10 @@ position = Vector2(3330, 1968)
 position = Vector2(2346, 104)
 rotation = 1.5708
 fire_interval = 10.0
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_clbwc")
+volume_db = -6.316
+autoplay = true
 
 [connection signal="pressed" from="UI/InstructionsPanel/VBoxContainer/Button" to="UI/InstructionsPanel" method="_on_button_pressed"]

@@ -11,7 +11,7 @@ var animation:AnimatedSprite2D
 var is_destroyed_timer: float
 @onready var despawn_timer = 20
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-
+@onready var impact: AudioStreamPlayer2D = $impact
 func _ready():
 	global_position = pos_spawn
 	
@@ -41,6 +41,7 @@ func _physics_process(delta: float) -> void:
 			queue_free()
 func _on_body_entered(body):
 	if body.is_in_group("Damageable"):
+		impact.play()
 		if body.get_multiplayer_authority() == get_multiplayer_authority():
 			body.recieve_damage.rpc()
 	if is_multiplayer_authority():

@@ -1,13 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbxdualumejet"]
+[gd_scene load_steps=10 format=3 uid="uid://dbxdualumejet"]
 
 [ext_resource type="Script" uid="uid://dpng3i7c3x485" path="res://scenes/levels/round_manager.gd" id="1_enb7h"]
 [ext_resource type="PackedScene" uid="uid://k1jpyuj8o8lx" path="res://scenes/players/building_player.tscn" id="2_ac336"]
 [ext_resource type="PackedScene" uid="uid://4sskgfn6nl4j" path="res://scenes/black_hole.tscn" id="2_pi8c4"]
 [ext_resource type="PackedScene" uid="uid://b8adktcjmef2l" path="res://scenes/ObjectSelectionUI.tscn" id="4_brcii"]
 [ext_resource type="PackedScene" uid="uid://dqxus3thqimav" path="res://scenes/planet.tscn" id="4_n1tqw"]
+[ext_resource type="AudioStream" uid="uid://c8qga28lbavoq" path="res://assets/SoundFx/321.mp3" id="6_rgcpf"]
+[ext_resource type="AudioStream" uid="uid://ctoulakuug3f0" path="res://assets/SoundFx/airhorn-fx-343682.mp3" id="7_r1s0e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n1tqw"]
-font_size = 30
+font_size = 60
 
 [sub_resource type="LabelSettings" id="LabelSettings_enb7h"]
 
@@ -36,3 +38,15 @@ uppercase = true
 
 [node name="ObjectSelectionUI" parent="." instance=ExtResource("4_brcii")]
 visible = false
+
+[node name="Node" type="Node" parent="."]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="Node"]
+autoplay = true
+
+[node name="StartSound" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("6_rgcpf")
+
+[node name="WinningSound" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("7_r1s0e")
+pitch_scale = 1.62

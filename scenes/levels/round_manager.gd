@@ -29,6 +29,29 @@ var active_builders = 0
 
 var game_paused: bool = false  # Nuevo: estado actual de pausa
 
+
+#SONIDOS 
+@onready var music_player: AudioStreamPlayer = $Node/MusicPlayer
+const playing_music = preload("res://assets/Music/Flim well cut.mp3")
+const lobby_music = preload("res://assets/Music/patapim well cut.mp3")
+@onready var start_sound: AudioStreamPlayer = $Node/StartSound
+@onready var winning_sound: AudioStreamPlayer = $Node/WinningSound
+
+
+func reproducir_musica(stream: AudioStream):
+	if music_player.stream != stream:
+		music_player.stream = stream
+		music_player.play()
+func cambio_volumen_gradual(target_db):
+	var fade_time = 1.0  # segundos
+	var start_db = music_player.volume_db
+	var timer = 0.0
+	while timer < fade_time:
+		var t = timer / fade_time
+		music_player.volume_db = lerp(start_db, target_db, t)
+		await get_tree().process_frame
+		timer += get_process_delta_time()
+	music_player.volume_db = target_db
 func _ready():
 	round_timer.wait_time = 1.0
 	round_timer.one_shot = false
@@ -62,6 +85,8 @@ func cambiar_fase(nuevo_estado: Estado):
 	estado_actual = nuevo_estado
 	match nuevo_estado:
 		Estado.ESPERANDO:
+			reproducir_musica(lobby_music)
+			music_player.volume_db = -10.0 
 			round_message.text = "Esperando inicio de ronda"
 			round_message.visible = true
 		Estado.CONSTRUCCION:
@@ -79,6 +104,8 @@ func cambiar_fase(nuevo_estado: Estado):
 			else:
 				mostrar_ui_seleccion()
 		Estado.JUGANDO:
+			reproducir_musica(playing_music)
+			music_player.volume_db = 0.0
 			round_message.visible = false
 			if is_multiplayer_authority():
 				start_round.rpc()
@@ -150,6 +177,8 @@ func notify_building_done():
 
 @rpc("authority", "call_local")
 func end_builiding_fase():
+	cambio_volumen_gradual(-50.0)
+	start_sound.play()
 	round_message.visible = true
 	round_message.text = "iniciando ronda en 3"
 	await get_tree().create_timer(1.0).timeout
@@ -183,6 +212,7 @@ func update_timer_label():
 	))
 
 func end_round(message: String):
+	winning_sound.play()
 	round_timer.stop()
 	round_message.text = message
 	round_message.visible = true

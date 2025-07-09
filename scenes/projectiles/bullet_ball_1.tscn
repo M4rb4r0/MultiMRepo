@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://b43n3as84savb"]
+[gd_scene load_steps=23 format=3 uid="uid://b43n3as84savb"]
 
 [ext_resource type="Texture2D" uid="uid://bxa56pr210m7f" path="res://assets/projectiles/All_Fire_Bullet_Pixel_16x16_00.png" id="1_4emhk"]
 [ext_resource type="Script" uid="uid://b3nhd6085ky2k" path="res://scripts/bullet_ball_1.gd" id="1_4psn1"]
 [ext_resource type="Texture2D" uid="uid://bo68fshcoodr8" path="res://assets/efectos/Free/Part 2/77.png" id="2_8ytdj"]
+[ext_resource type="AudioStream" uid="uid://cil4ka6ihtbcj" path="res://assets/SoundFx/explosion-9-340460.mp3" id="4_umn88"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_umn88"]
 atlas = ExtResource("2_8ytdj")
@@ -161,5 +162,11 @@ debug_color = Color(0.996078, 0, 0, 0.419608)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_8ytdj")
+
+[node name="impact" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_umn88")
+volume_db = -4.782
+pitch_scale = 0.66
+playback_type = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
